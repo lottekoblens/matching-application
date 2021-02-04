@@ -1,0 +1,19 @@
+{
+  "name": "matching-application",
+  "version": "1.0.0",
+  "description": "this is a project for blok tech",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "say-hello": "echo 'Hello World'",
+    "start": "node index.js"
+  },
+  "author": "Lotte Koblens",
+  "license": "MIT",
+  "dependencies": {
+    "camelcase": "^6.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
