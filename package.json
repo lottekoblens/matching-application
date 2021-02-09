@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "say-hello": "echo 'Hello World'",
-    "start": "node index.js"
+    "start": "node index.js",
+    "watchserver": "nodemon index.js"
   },
   "author": "Lotte Koblens",
   "license": "MIT",
