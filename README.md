@@ -8,7 +8,7 @@ beautiful friendships can develop!
 1. Clone this repository 
    
     ``` git clone https://github.com/lottekoblens/matching-application.git ```
-1. run npm install
+1. run `npm install`
 
 ## Usage
 1. Navigate to the projects folder root
