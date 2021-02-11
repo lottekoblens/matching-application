@@ -6,6 +6,9 @@ console.log(camelCase('foo-bar'));
 
 const express = require('express');
 const app = express();
+const PORT = 3000;
+
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
     res.send('Hello World');
@@ -19,10 +22,9 @@ app.get('/like', (req, res) => {
     res.send('This is the like page');
 })
 
-app.listen(3000);
+app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
 
 app.use(function (req, res, next) {
     res.status(404).send("Sorry can't find that!")
   })
 
-app.use(express.static('public'))
