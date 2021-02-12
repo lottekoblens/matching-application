@@ -20,10 +20,10 @@ app.use('/static', express.static(path.join(__dirname, 'public')))
 
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
-app.set('views', '/views');
+app.set('views', path.join(__dirname, '/views'));
 
 app.get('/', function (req, res) {
-    res.render('home');
+    res.render('home.handlebars');
 })
 
 app.get('/about', (req, res) => {
