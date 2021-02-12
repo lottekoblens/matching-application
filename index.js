@@ -6,8 +6,10 @@ console.log(camelCase('foo-bar'));
 
 const express = require('express');
 const app = express();
+const exphbs = require('express-handlebars');
 const PORT = 3000;
 
+// express
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
@@ -28,3 +30,10 @@ app.use(function (req, res, next) {
     res.status(404).send("Sorry can't find that!")
   })
 
+// Handlebars
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
+
+app.get('/', function (req, res) {
+    res.render('home');
+})
