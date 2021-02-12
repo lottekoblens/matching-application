@@ -8,12 +8,22 @@ const express = require('express');
 const app = express();
 const exphbs = require('express-handlebars');
 const PORT = 3000;
+const path = require('path');
 
 // express
-app.use(express.static('public'));
+app.use('/static', express.static(path.join(__dirname, 'public')))
 
-app.get('/', (req, res) => {
-    res.send('Hello World');
+
+// app.get('/', (req, res) => {
+//     res.send('Hello World');
+// })
+
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
+app.set('views', '/views');
+
+app.get('/', function (req, res) {
+    res.render('home');
 })
 
 app.get('/about', (req, res) => {
@@ -31,9 +41,3 @@ app.use(function (req, res, next) {
   })
 
 // Handlebars
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
-
-app.get('/', function (req, res) {
-    res.render('home');
-})
