@@ -5,22 +5,22 @@ const PORT = 3000;
 const path = require('path');
 
 // express
-app.use('/static', express.static(path.join(__dirname, 'public')))
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 // app.get('/', (req, res) => {
 //     res.send('Hello World');
 // })
 
-app.engine('handlebars', exphbs());
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, '/views'));
 
 app.get('/', function (req, res) {
-    res.render('home.handlebars');
+    res.render('home');
 })
 
 app.get('/about', (req, res) => {
-    res.send('This is the about');
+    res.render('about');
 })
 
 app.get('/like', (req, res) => {
