@@ -11,20 +11,25 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 //     res.send('Hello World');
 // })
 
+// handlebars
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, '/views'));
 
-app.get('/', function (req, res) {
-    res.render('home');
-})
 
-app.get('/about', (req, res) => {
-    res.render('about');
+// routing
+app.get('/', function (req, res) {
+    res.render('home', { 
+        title: 'MacLovers Home' });
 })
 
 app.get('/like', (req, res) => {
-    res.send('This is the like page');
+    res.render('like', {
+         title: 'MacLovers About' });
+})
+
+app.get('/dashboard', (req, res) => {
+    res.render('dashboard');
 })
 
 app.use(function (req, res, next) {
