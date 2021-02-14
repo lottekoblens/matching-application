@@ -6,6 +6,7 @@ const path = require('path');
 
 // express
 app.use('/static', express.static(path.join(__dirname, 'public')));
+// app.use(express.static("public"))
 
 // handlebars
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
