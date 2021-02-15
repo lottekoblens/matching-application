@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
 const exphbs = require('express-handlebars');
+const { url } = require('inspector');
 const PORT = 3000;
 const path = require('path');
 
 // express
 app.use('/static', express.static(path.join(__dirname, 'public')));
-// app.use(express.static("public"))
 
 // handlebars
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
@@ -17,7 +17,9 @@ app.set('views', path.join(__dirname, '/views'));
 // routing
 app.get('/', function (req, res) {
     res.render('home', { 
-        style: 'home.css' });
+        style: 'home.css',
+        info: '24 jaar, Amsterdam',
+        name: 'Lisa Hofman'});
 })
 
 app.get('/like', (req, res) => {
