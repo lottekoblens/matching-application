@@ -24,15 +24,30 @@ app.get('/', function (req, res) {
 
 app.get('/like', (req, res) => {
     res.render('like', {
-         style: 'like.css' });
-})
-
-app.get('/dashboard', (req, res) => {
-    res.render('dashboard');
-})
+         style: 'like.css',
+         information: [
+            {info:'24 jaar, Amsterdam'}, 
+            {info: '26 jaar, Amstelveen'},
+            {info: '23 jaar, Diemen'},
+            {info:'24 jaar, Hoofddorp'},
+            {info:'23 jaar, Amsterdam'}
+        ],
+         people: [
+            {name:'Lisa Hofman'}, 
+            {name:'Thomas Bergen'},
+            {name:'Julia Fransen'},
+            {name:'Sanne Groot'},
+            {name:'Kim Verdonge'}
+        ],
+         product: [
+            {option:'Hamburger'}, 
+            {option: 'Cheeseburger'},
+            {option:'Big Mac'}
+        ] });
+});
 
 app.use(function (req, res, next) {
-    res.status(404).send("Sorry can't find that!")
-  })
+    res.status(404).send("Sorry can't find that!");
+});
 
 app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));

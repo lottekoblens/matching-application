@@ -1,3 +1,68 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto';
+ }
+ 
+ a {
+     text-decoration: none;
+ }
+ 
+ header {
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     align-items: center;
+     background: #8fb398;
+     height: 5em;
+ }
+ 
+ header h2 {
+     padding: 0.5em;
+     margin: 0;
+     font-size: 2.3em;
+     color: #ffd700;
+ }
+ 
+ .hartje {
+     width: 3em;
+     height: 3em;
+     margin: 1em;
+ }
+
 h3 {
-    margin: 1em;
+    margin: 0.5em 1em 0 0.5em;;
+}
+
+h4 {
+    margin: 0.5em;
+}
+
+p {
+    margin: 0.5em 1em 0.5em 0.5em;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: #c3deca;
+}
+
+li {
+    display: flex;
+    flex-direction: row;
+}
+
+ul li:nth-of-type(odd) {
+    background: #618069;
+    color: white;
+}
+
+ul li img {
+    width: 5.1em;
+    height: 6em;
+    padding: 0.5em;
 }
