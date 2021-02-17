@@ -11,11 +11,12 @@
   "author": "Lotte Koblens",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "camelcase": "^6.2.0",
-    "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
-    "handlebars": "^4.7.6"
+    "handlebars": "^4.7.6",
+    "slug": "^4.0.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
