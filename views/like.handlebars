@@ -4,6 +4,12 @@
 <p>If you don't like someone anymore, you can delete them.</p>
 
 <ul>
+{{#each people}}
+<li> <div><h4>{{name}}</h4>  <p>{{age}}, {{residence}}</p> <p>Favorite product: {{product}}</p></div></li>
+{{/each}}
+</ul>
+
+{{!-- <ul>
     <li>
         <img src="/static/images/girl-mc.jpg" alt="">
         <div>
@@ -52,4 +58,4 @@
         <p>Lievelingsproduct: {{ product.0.option }}</p>
         </div>
     </li>
-</ul>
+</ul> --}}

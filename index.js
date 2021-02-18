@@ -35,12 +35,12 @@ app.get('/like', (req, res) => {
         //     {info:'23 jaar, Amsterdam'}
         // ],
          people: [
-            {name:'Lisa Hofman', age:'24 jaar', residence: 'Amsterdam'}, 
-            {name:'Thomas Bergen', age: '26 jaar', residence: 'Amstelveen'},
-            {name:'Julia Fransen', age:'23 jaar', residence: 'Diemen'},
-            {name:'Sanne Groot', age:'24 jaar', residence: 'Hoofddorp'},
-            {name:'Kim Verdonge', age:'23 jaar', residence: 'Amsterdam'},
-            {name:'Kim Verdonge', age:'23 jaar', residence: 'Amsterdam'}
+            {name:'Lisa Hofman', age:'24 jaar', residence: 'Amsterdam', product: 'Hamburger'}, 
+            {name:'Thomas Bergen', age: '26 jaar', residence: 'Amstelveen', product: 'Cheeseburger'},
+            {name:'Julia Fransen', age:'23 jaar', residence: 'Diemen', product:'Cheeseburger'},
+            {name:'Sanne Groot', age:'24 jaar', residence: 'Hoofddorp', product:'Hamburger'},
+            {name:'Kim Verdonge', age:'23 jaar', residence: 'Amsterdam', product: 'Big Mac'},
+            {name:'Kim Verdonge', age:'23 jaar', residence: 'Amsterdam', product: 'Hamburger'}
         ],
          product: [
             {option:'Hamburger'}, 
@@ -48,6 +48,17 @@ app.get('/like', (req, res) => {
             {option:'Big Mac'}
         ] });
 });
+
+app.post('/like', like);
+
+function like(req, res) {
+    data.push ({
+        name: req.body.name,
+        age: req.body.age,
+        residence: req.body.residence
+    })
+    res.redirect('/')
+}
 
 app.use(function (req, res, next) {
     res.status(404).send("Sorry can't find that!");
