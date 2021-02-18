@@ -54,6 +54,19 @@ app.get('/like', (req, res) => {
         // console.log(randomProfile(people));
 });
 
+//body-parser
+// support parsing of application/json type post data
+app.use(bodyParser.json());
+
+//support parsing of application/x-www-form-urlencoded post data
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.post("/like",function(req,res){
+    const data = req.body;
+    res.send("response");
+    res.redirect('/');
+})
+
 // app.post('/like', like);
 
 // function like(req, res) {
