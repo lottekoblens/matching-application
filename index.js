@@ -47,18 +47,23 @@ app.get('/like', (req, res) => {
             {option: 'Cheeseburger'},
             {option:'Big Mac'}
         ] });
+
+        // function randomProfile(people){
+        //     return people[Math.floor(Math.random()*people.length)];
+        // }
+        // console.log(randomProfile(people));
 });
 
-app.post('/like', like);
+// app.post('/like', like);
 
-function like(req, res) {
-    data.push ({
-        name: req.body.name,
-        age: req.body.age,
-        residence: req.body.residence
-    })
-    res.redirect('/')
-}
+// function like(req, res) {
+//     data.push ({
+//         name: req.body.name,
+//         age: req.body.age,
+//         residence: req.body.residence
+//     })
+//     res.redirect('/')
+// }
 
 app.use(function (req, res, next) {
     res.status(404).send("Sorry can't find that!");

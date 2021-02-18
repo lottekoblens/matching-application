@@ -1,9 +1,12 @@
-<form method="POST" action="like">
-    <label>
+<form id="like" method="POST" action="like">
+    {{!-- <label>
         <input type="radio" name="liked" value="no">Dislike
     </label>
     <label>
         <input type="radio" name="liked" value="yes">Like
-    </label>
-    <button>add</button>
+    </label> --}}
+    <button type="submit">Like</button>
+</form>
+<form id="dislike" action="dislike">
+    <button type="submit">Dislike</button>
 </form>
