@@ -43,6 +43,11 @@ h3 {
     border-radius: 10%;
 }
 
+.formulier {
+    display: flex;
+    flex-direction: row;;
+}
+
 #button1, #button2 {
     background-size: cover;
     width: 8em;
@@ -53,11 +58,12 @@ h3 {
 
 #button1 {
     background-image: url('/static/images/dislike-button.svg');
-    margin: 2.5em 6em 1em 2.5em;
+    margin: 2.5em 5em 1em 2.5em;
 }
 
 #button2 {
     background-image: url('/static/images/like-button.svg');
+    margin: 2.5em 0 1em 0;
 }
 
 .info {

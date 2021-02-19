@@ -1,8 +1,17 @@
 {{> header }}
 
+{{!-- <div>{{people.id[0]}}</div> --}}
 <img class="girl" src="/static/images/girl-mc.jpg" alt="Girl eating McDonalds">
 <h3>{{ name }}</h3>
 <p class="info">{{ info }}</p>
-<button id="button1"></button>
-<button id="button2"></button>
+<div class="formulier">
 {{> form }}
+</div>
+
+<p>{{ data.[0].name }}</p>
+
+<div>
+{{#each people.id }}
+<img src="{{img}}"><div><h4>{{name}}</h4>  <p>{{age}}, {{residence}}</p> <p>Favorite product: {{product}}</p></div>
+{{/each}}
+</div>
