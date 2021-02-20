@@ -19,6 +19,11 @@ const people =  [
     {id: 5, img: '/static/images/girl-mc.jpg',name:'Kim Verdonge', age:'23 jaar', residence: 'Amsterdam', product: 'Hamburger'}
 ];
 
+let testID = 1;
+console.log(people.find(item => {
+return item.id === testID
+}))
+
 // console.log(people[1].name);
 
 // express
@@ -38,8 +43,6 @@ app.get('/', function (req, res) {
         people: people
     });
 })
-
-
 
 app.get('/like', (req, res) => {
     res.render('like', {
