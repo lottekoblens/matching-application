@@ -4,6 +4,20 @@
 <h3>You liked these people</h3>
 <p>If you don't like someone anymore, you can delete them.</p>
 
+<ul>
+    <% people.forEach(function(people) { %>
+        <li>
+            <img src="<%= people.img %>">
+            <div>
+                <h4><%= people.name %></h4>
+                <p><%= people.age %>, <%= people.residence %></p>
+                <p>Favorite product: <%= people.product %></p>
+            </div>
+        </li>
+    <% }); %>
+</ul>
+
+
 <!-- <ul>
 {{#each people}}
 <li> <img src="{{img}}"><div><h4>{{name}}</h4>  <p>{{age}}, {{residence}}</p> <p>Favorite product: {{product}}</p></div></li>

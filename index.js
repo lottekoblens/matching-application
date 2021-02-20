@@ -33,8 +33,10 @@ app.set('views', path.join(__dirname, '/views'));
 // routing
 app.get('/', function (req, res) {
     res.render('home',  
-    {style: 'home.css', 
-    name: 'lisa'});
+        {style: 'home.css', 
+        name: 'lisa',
+        people: people
+    });
 })
 
 
@@ -42,14 +44,7 @@ app.get('/', function (req, res) {
 app.get('/like', (req, res) => {
     res.render('like', {
          style: 'like.css',
-         people: [
-            {img: '/static/images/girl-mc.jpg', name:'Lisa Hofman', age:'24 jaar', residence: 'Amsterdam', product: 'Hamburger'}, 
-            {img: '/static/images/man-cheeseburger.jpg',name:'Thomas Bergen', age: '26 jaar', residence: 'Amstelveen', product: 'Cheeseburger'},
-            {img: '/static/images/girl-cheeseburger.jpg',name:'Julia Fransen', age:'23 jaar', residence: 'Diemen', product:'Cheeseburger'},
-            {img: '/static/images/woman-burger.jpg',name:'Sanne Groot', age:'24 jaar', residence: 'Hoofddorp', product:'Hamburger'},
-            {img: '/static/images/girl-bigmac.jpg',name:'Kim Verdonge', age:'23 jaar', residence: 'Amsterdam', product: 'Big Mac'},
-            {img: '/static/images/girl-mc.jpg',name:'Kim Verdonge', age:'23 jaar', residence: 'Amsterdam', product: 'Hamburger'}
-        ]
+         people: people
     });
 });
 
