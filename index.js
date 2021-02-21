@@ -1,12 +1,13 @@
 const express = require('express');
 const app = express();
-// const exphbs = require('express-handlebars');
 const { url } = require('inspector');
 const PORT = 3000;
 const path = require('path');
 const bodyParser = require('body-parser');
 const slug = require('slug');
 const ejs = require('ejs');
+const { count } = require('console');
+const { lookupService } = require('dns');
 
 const urlencodedParser = bodyParser.urlencoded({extended: false});
 
@@ -19,17 +20,26 @@ const people =  [
     {id: 5, img: '/static/images/girl-mc.jpg',name:'Kim Verdonge', age:'23 jaar', residence: 'Amsterdam', product: 'Hamburger'}
 ];
 
-let testID = 1;
+
+
+function Person() {
+    return people[testID].id;
+}
+
+let testID = 0;
 console.log(people.find(item => {
 return item.id === testID
 }))
 
-// console.log(people[1].name);
+function Count() {
+    testID++;
+    console.log(testID);
+}
 
 // express
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
-// handlebars
+// ejs
 // app.engine('ejs', ejs({ defaultLayout: 'header' }));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
@@ -50,11 +60,6 @@ app.get('/like', (req, res) => {
          people: people
     });
 });
-
-// function randomProfile(people){
-//     return people[Math.floor(Math.random()*people.length)];
-// }
-// console.log(randomProfile(people));
 
 //body-parser
 // support parsing of application/json type post data
