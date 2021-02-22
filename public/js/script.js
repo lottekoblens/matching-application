@@ -4,4 +4,3 @@
 // function submitted () {
 //     <%= people.id %> = x;
 // }
-
