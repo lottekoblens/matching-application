@@ -1,8 +1,14 @@
 const express = require('express');
 require('dotenv').config();
 
+// const { MongoClient } = require('mongodb');
+
+// const url =
+//   'mongodb+srv://lottekoblens:<password>@mcduo.dqcvf.mongodb.net/Mcduo?retryWrites=true&w=majority';
+// const client = new MongoClient(url);
+
 const app = express();
-const { url } = require('inspector');
+// const { url } = require('inspector');
 
 const PORT = 3000;
 const path = require('path');
@@ -14,12 +20,24 @@ const { lookupService } = require('dns');
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-const db = require('db');
+// const dbName = 'McDuo';
 
-db.connect({
-  host: process.env.DB_HOST,
-  username: process.env.DB_USER,
-  password: process.env.DB_PASS,
+// const db = require('db');
+
+// db.connect({
+//   host: process.env.DB_HOST,
+//   username: process.env.DB_USER,
+//   password: process.env.DB_PASS,
+// });
+
+app.param('id', function (request, response, next, id) {
+  const _profile = `${id}-req`;
+  request.profileId = _profile;
+  next();
+});
+
+app.get('/profile/:id', function (request, response) {
+  response.send(request.profileId);
 });
 
 const people = [
