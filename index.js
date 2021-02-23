@@ -8,7 +8,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const slug = require('slug');
 const ejs = require('ejs');
-const { count } = require('console');
+// const { count } = require('console');
 const { lookupService } = require('dns');
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
