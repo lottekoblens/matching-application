@@ -86,7 +86,12 @@ app.set('views', path.join(__dirname, '/views'));
 
 // routing
 app.get('/', function (req, res) {
-  res.render('home', { style: 'home.css', name: 'lisa', people });
+  res.render('home', {
+    style: 'home.css',
+    name: 'lisa',
+    people,
+    testID,
+  });
 });
 
 app.get('/like', (req, res) => {
@@ -106,8 +111,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/', urlencodedParser, function (req, res) {
   // console.log(req.body.people);
   // const data = req.body;
-  res.send('response');
-  // res.redirect('home');
+  // res.send('response');
+  res.redirect('/');
   // res.render ('like', { data });
 });
 
