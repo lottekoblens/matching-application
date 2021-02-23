@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 
 const app = express();
 const { url } = require('inspector');
@@ -12,6 +13,14 @@ const ejs = require('ejs');
 const { lookupService } = require('dns');
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
+
+const db = require('db');
+
+db.connect({
+  host: process.env.DB_HOST,
+  username: process.env.DB_USER,
+  password: process.env.DB_PASS,
+});
 
 const people = [
   {
