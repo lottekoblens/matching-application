@@ -39,7 +39,7 @@ h4 {
 }
 
 p {
-    margin: 0.5em 1em 0.5em 0.5em;
+    margin: 0.5em 0.8em 0.5em 0.5em;
 }
 
 ul {
@@ -65,4 +65,11 @@ ul li img {
     width: 5.1em;
     height: 6em;
     padding: 0.5em;
+}
+
+#img-delete {
+    width: 2em;
+    height: 2.5em;
+    margin: 0.5em;
+    padding: 0;
 }
