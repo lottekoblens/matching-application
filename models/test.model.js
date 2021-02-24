@@ -13,6 +13,22 @@ const clusterSchema = new schema({
     type: String,
     required: [true, 'Name is required'],
   },
+  age: {
+    type: String,
+    required: [true, 'Age is required'],
+  },
+  img: {
+    type: String,
+    required: [true, 'Image is required'],
+  },
+  residence: {
+    type: String,
+    required: [true, 'Residence is required'],
+  },
+  product: {
+    type: String,
+    required: [true, 'Product is required'],
+  },
   liked: {
     type: Boolean,
     required: [true, 'Liked is required'],
@@ -23,4 +39,4 @@ const clusterSchema = new schema({
   },
 });
 
-module.exports = mongoose.model('people', clusterSchema);
+module.exports = mongoose.model('users', clusterSchema);

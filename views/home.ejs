@@ -1,9 +1,9 @@
 <%- include('./layouts/main.ejs'); %>
 <%- include('partials/header.ejs'); %>
 
-<img class="girl" src="/static/images/girl-mc.jpg" alt="Girl eating McDonalds">
+<img class="girl" src="<%- firstUser.img %>" alt="Girl eating McDonalds">
 <h3><%= firstUser.name %></h3>
-<p class="info"> <%- firstUser.age %></p>
+<p class="info"> <%- firstUser.age %>, <%- firstUser.residence %></p>
 <div class="formulier">
   <%- include('partials/form.ejs'); %>
 </div>

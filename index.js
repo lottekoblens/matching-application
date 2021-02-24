@@ -69,7 +69,6 @@ mongoose.connect(dbUrl, {
   useNewUrlParser: true,
   useFindAndModify: false,
 });
-console.log(dbUrl);
 
 // express
 app
@@ -88,7 +87,7 @@ app.param('id', function (request, response, next, id) {
 // routing
 app.get('/', async (req, res) => {
   const allUsers = await findAllPeopleNotVisited();
-  console.log(allUsers);
+  // console.log(allUsers);
   const firstUser = allUsers[0];
   const userID = allUsers[0].id;
 
@@ -134,10 +133,10 @@ function updateData(id, liked) {
 
 async function findAllPeopleNotVisited() {
   const data = await testingModel
-    .find({})
+    .find({ visited: false })
     .lean()
     .then((data) => data);
-  console.log(data);
+  // console.log(data);
 
   return data;
 }
