@@ -1,7 +1,11 @@
-<form id="dislike" action="/">
+<form id="dislike" method="POST" action="/">
+    <input name="liked" type="hidden" value="false">
+    <input name="id" type="hidden" value="<%= userID %>">
     <button id="button1" type="submit"></button>
-</form>
-<form id="like" method="POST" action= "/">
-    <input type="hidden" value="<%= testID %>">
+  </form>
+  <form id="like" method="POST" action= "/">
+    <input name="liked" type="hidden" value="true">
+    <input name="id" type="hidden" value="<%= userID %>">
     <button id="button2" type="submit"></button>
-</form>
+  </form>
+  

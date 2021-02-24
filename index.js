@@ -1,34 +1,82 @@
 const express = require('express');
-require('dotenv').config();
-
-// const { MongoClient } = require('mongodb');
-
-// const url =
-//   'mongodb+srv://lottekoblens:<password>@mcduo.dqcvf.mongodb.net/Mcduo?retryWrites=true&w=majority';
-// const client = new MongoClient(url);
 
 const app = express();
-// const { url } = require('inspector');
-
-const PORT = 3000;
+const port = 3000;
 const path = require('path');
 const bodyParser = require('body-parser');
 const slug = require('slug');
 const ejs = require('ejs');
-// const { count } = require('console');
-const { lookupService } = require('dns');
 
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
+const urlencodedParser = bodyParser.urlencoded({ extended: true });
+const mongoose = require('mongoose');
+const testingModel = require('./models/test.model');
+require('dotenv').config();
 
-// const dbName = 'McDuo';
+// const people = [
+// {
+// id: 0,
+// img: '/static/images/girl-mc.jpg',
+// name: 'Lisa Hofman',
+// age: '24 jaar',
+// residence: 'Amsterdam',
+// product: 'Hamburger',
+// },
+// {
+// id: 1,
+// img: '/static/images/man-cheeseburger.jpg',
+// name: 'Thomas Bergen',
+// age: '26 jaar',
+// residence: 'Amstelveen',
+// product: 'Cheeseburger',
+// },
+// {
+// id: 2,
+// img: '/static/images/girl-cheeseburger.jpg',
+// name: 'Julia Fransen',
+// age: '23 jaar',
+// residence: 'Diemen',
+// product: 'Cheeseburger',
+// },
+// {
+// id: 3,
+// img: '/static/images/woman-burger.jpg',
+// name: 'Sanne Groot',
+// age: '24 jaar',
+// residence: 'Hoofddorp',
+// product: 'Hamburger',
+// },
+// {
+// id: 4,
+// img: '/static/images/girl-bigmac.jpg',
+// name: 'Kim Verdonge',
+// age: '23 jaar',
+// residence: 'Amsterdam',
+// product: 'Big Mac',
+// },
+// {
+// id: 5,
+// img: '/static/images/girl-mc.jpg',
+// name: 'Kim Verdonge',
+// age: '23 jaar',
+// residence: 'Amsterdam',
+// product: 'Hamburger',
+// },
+// ];
 
-// const db = require('db');
+const dbUrl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}`;
+mongoose.connect(dbUrl, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useFindAndModify: false,
+});
 
-// db.connect({
-//   host: process.env.DB_HOST,
-//   username: process.env.DB_USER,
-//   password: process.env.DB_PASS,
-// });
+// express
+app
+  .use('/static', express.static(path.join(__dirname, 'public')))
+  .use(bodyParser.json())
+  .use(urlencodedParser)
+  .set('view engine', 'ejs')
+  .set('views', path.join(__dirname, '/views'));
 
 app.param('id', function (request, response, next, id) {
   const _profile = `${id}-req`;
@@ -36,89 +84,24 @@ app.param('id', function (request, response, next, id) {
   next();
 });
 
-app.get('/profile/:id', function (request, response) {
-  response.send(request.profileId);
-});
-
-const people = [
-  {
-    id: 0,
-    img: '/static/images/girl-mc.jpg',
-    name: 'Lisa Hofman',
-    age: '24 jaar',
-    residence: 'Amsterdam',
-    product: 'Hamburger',
-  },
-  {
-    id: 1,
-    img: '/static/images/man-cheeseburger.jpg',
-    name: 'Thomas Bergen',
-    age: '26 jaar',
-    residence: 'Amstelveen',
-    product: 'Cheeseburger',
-  },
-  {
-    id: 2,
-    img: '/static/images/girl-cheeseburger.jpg',
-    name: 'Julia Fransen',
-    age: '23 jaar',
-    residence: 'Diemen',
-    product: 'Cheeseburger',
-  },
-  {
-    id: 3,
-    img: '/static/images/woman-burger.jpg',
-    name: 'Sanne Groot',
-    age: '24 jaar',
-    residence: 'Hoofddorp',
-    product: 'Hamburger',
-  },
-  {
-    id: 4,
-    img: '/static/images/girl-bigmac.jpg',
-    name: 'Kim Verdonge',
-    age: '23 jaar',
-    residence: 'Amsterdam',
-    product: 'Big Mac',
-  },
-  {
-    id: 5,
-    img: '/static/images/girl-mc.jpg',
-    name: 'Kim Verdonge',
-    age: '23 jaar',
-    residence: 'Amsterdam',
-    product: 'Hamburger',
-  },
-];
-
-let testID = 0;
-console.log(people.find((item) => item.id === testID));
-
-function Person() {
-  return people[testID].id;
-}
-
-function Count() {
-  testID++;
-  console.log(testID);
-}
-
-// express
-app.use('/static', express.static(path.join(__dirname, 'public')));
-
-// ejs
-// app.engine('ejs', ejs({ defaultLayout: 'header' }));
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '/views'));
-
 // routing
-app.get('/', function (req, res) {
+app.get('/', async (req, res) => {
+  const allUsers = await findAllPeopleNotVisited();
+  const firstUser = allUsers[0];
+  const userID = allUsers[0].id;
+
   res.render('home', {
     style: 'home.css',
     name: 'lisa',
-    people,
-    testID,
+    firstUser,
+    userID,
   });
+});
+
+app.post('/', function (req, res) {
+  console.log(req.body);
+  updateData(req.body.id, req.body.liked);
+  res.redirect('/');
 });
 
 app.get('/like', (req, res) => {
@@ -128,23 +111,30 @@ app.get('/like', (req, res) => {
   });
 });
 
-// body-parser
-// support parsing of application/json type post data
-app.use(bodyParser.json());
-
-// support parsing of application/x-www-form-urlencoded post data
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.post('/', urlencodedParser, function (req, res) {
-  // console.log(req.body.people);
-  // const data = req.body;
-  // res.send('response');
-  res.redirect('/');
-  // res.render ('like', { data });
+app.get('/profile/:id', function (request, response) {
+  response.send(request.profileId);
 });
 
 app.use(function (req, res, next) {
   res.status(404).send("Sorry can't find that!");
 });
 
-app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
+app.listen(port, () => console.log(`Server listening on port: ${port}`));
+
+function updateData(id, liked) {
+  testingModel
+    .findOneAndUpdate({ id }, { $set: { liked, visited: true } })
+    .lean()
+    .then((data) => {
+      console.log(data);
+    });
+}
+
+async function findAllPeopleNotVisited() {
+  const data = await testingModel
+    .find({ visited: false })
+    .lean()
+    .then((data) => data);
+
+  return data;
+}
