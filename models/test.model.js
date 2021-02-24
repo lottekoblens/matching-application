@@ -13,18 +13,6 @@ const clusterSchema = new schema({
     type: String,
     required: [true, 'Name is required'],
   },
-  age: {
-    type: Number,
-    required: [true, 'Age is required'],
-  },
-  img: {
-    type: String,
-    required: [true, 'Image is required'],
-  },
-  residence: {
-    type: String,
-    required: [true, 'Residence is required'],
-  },
   liked: {
     type: Boolean,
     required: [true, 'Liked is required'],
