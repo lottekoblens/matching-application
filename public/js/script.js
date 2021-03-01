@@ -1,6 +1,3 @@
-// const submitButton = document.getElementById('button2');
-
-// submitButton.addEventListener("click", submitted());
-// function submitted () {
-//     <%= people.id %> = x;
-// }
+if ($where('div#status').text() != '') {
+  alert($('div#status').text());
+}

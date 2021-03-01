@@ -30,15 +30,19 @@ app
 
 // routing
 app.get('/', async (req, res) => {
-  const allUsers = await findAllPeopleNotVisited();
-  const firstUser = allUsers[0];
-  const userID = allUsers[0].id;
+  try {
+    const allUsers = await findAllPeopleNotVisited();
+    const firstUser = allUsers[0];
+    const userID = allUsers[0].id;
 
-  res.render('home', {
-    style: 'home.css',
-    firstUser,
-    userID,
-  });
+    res.render('home', {
+      style: 'home.css',
+      firstUser,
+      userID,
+    });
+  } catch (e) {
+    res.send('No more people to show');
+  }
 });
 // sources images:
 // https://www.cosmopolitan.com/nl/lifestyle/a21188626/de-lekkerste-dingen-bij-de-mcdonalds/
