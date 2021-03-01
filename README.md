@@ -6,9 +6,6 @@ beautiful friendships can develop!
 
 I designed the application for the Iphone X, it's not responsive.
 
-<img src="/static/images/homepagina.png" alt="Screenshot of homepage"> 
-<img src="/static/images/homepagina.png" alt="Screenshot of liked page">
-
 ## Installation
 1. Clone this repository 
    
