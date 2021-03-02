@@ -75,3 +75,20 @@ ul li img {
     margin: 0.5em 0 0 0;
     padding: 0;
 }
+
+a#liked {
+    display: flex;
+    justify-content: center;
+    margin-left: calc(50% - 4.5em);
+    width: 9em;
+    padding: 0.3em;
+    font-size: 1.1em;
+    text-align: center;
+    background:#f54040;
+    color: white;
+    margin-top: 2em;
+}
+
+img#likey {
+    margin: 4em 2em 2em 2em;
+}

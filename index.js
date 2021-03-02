@@ -29,6 +29,7 @@ app
   .set('views', path.join(__dirname, '/views'));
 
 // routing
+// home page
 app.get('/', async (req, res) => {
   try {
     const allUsers = await findAllPeopleNotVisited();
@@ -41,7 +42,8 @@ app.get('/', async (req, res) => {
       userID,
     });
   } catch (e) {
-    res.redirect('/nobody');
+    console.log(e);
+    res.redirect('/nomorepeople');
   }
 });
 // sources images:
@@ -63,13 +65,32 @@ app.post('/', function (req, res) {
   res.redirect('/');
 });
 
+// like page
 app.get('/like', async (req, res) => {
-  const liked = await findAllPeopleLiked();
-  const likedPeople = liked[0].id;
-  res.render('like', {
+  try {
+    const liked = await findAllPeopleLiked();
+    const likedPeople = liked[0].id;
+    res.render('like', {
+      style: 'like.css',
+      liked,
+      likedPeople,
+    });
+  } catch (e) {
+    res.redirect('/nobodyliked');
+  }
+});
+
+// nobody is liked page
+app.get('/nobodyliked', async (req, res) => {
+  res.render('nobodyliked', {
     style: 'like.css',
-    liked,
-    likedPeople,
+  });
+});
+
+// no more people to display
+app.get('/nomorepeople', async (req, res) => {
+  res.render('nomorepeople', {
+    style: 'home.css',
   });
 });
 
@@ -78,6 +99,7 @@ app.use(function (req, res, next) {
   res.status(404).send("Sorry can't find that!");
 });
 
+// id is found and updated and liked and visited will be set to true
 function updateData(id, liked) {
   testingModel
     .findOneAndUpdate({ id }, { $set: { liked, visited: true } })
@@ -87,6 +109,7 @@ function updateData(id, liked) {
     });
 }
 
+// people of which visited is false will be found
 async function findAllPeopleNotVisited() {
   const data = await testingModel
     .find({ visited: false })
@@ -95,6 +118,7 @@ async function findAllPeopleNotVisited() {
   return data;
 }
 
+// people of which liked is true will be found
 async function findAllPeopleLiked() {
   const data = await testingModel
     .find({ liked: true })
