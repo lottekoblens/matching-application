@@ -41,7 +41,7 @@ app.get('/', async (req, res) => {
       userID,
     });
   } catch (e) {
-    res.send('No more people to show');
+    res.redirect('/nobody');
   }
 });
 // sources images:

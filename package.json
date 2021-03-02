@@ -1,10 +1,9 @@
 {
   "name": "matching-application",
   "version": "1.0.0",
-  "description": "this is a project for blok tech",
+  "description": "This is a matching application for blok tech",
   "main": "index.js",
   "scripts": {
-    "say-hello": "echo 'Hello World'",
     "start": "node index.js",
     "watchserver": "nodemon index.js",
     "lint": "eslint .",
