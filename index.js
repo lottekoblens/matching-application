@@ -65,7 +65,7 @@ app.post('/', function (req, res) {
   res.redirect('/');
 });
 
-app.post('like', function (req, res) {
+app.post('/like', function (req, res) {
   nolike(req.body.liked);
   res.redirect('like');
 });
@@ -75,12 +75,19 @@ app.get('/like', async (req, res) => {
   try {
     const liked = await findAllPeopleLiked();
     const likedPeople = liked[0].id;
+    const allUsers = await findAllPeopleNotVisited();
+    const firstUser = allUsers[0];
+    const userID = allUsers[0].id;
     res.render('like', {
       style: 'like.css',
       liked,
       likedPeople,
+      allUsers,
+      userID,
+      firstUser,
     });
   } catch (e) {
+    console.log(e);
     res.redirect('/nobodyliked');
   }
 });
