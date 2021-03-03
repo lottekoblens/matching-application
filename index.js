@@ -66,7 +66,7 @@ app.post('/', function (req, res) {
 });
 
 app.post('like', function (req, res) {
-  dislike(req.body.liked);
+  nolike(req.body.liked);
   res.redirect('like');
 });
 
@@ -114,7 +114,7 @@ function updateData(id, liked) {
     });
 }
 
-function dislike(liked) {
+function nolike(liked) {
   testingModel
     .findOneAndUpdate({ $set: { liked: false } })
     .lean()
