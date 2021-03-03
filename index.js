@@ -66,7 +66,7 @@ app.post('/', function (req, res) {
 });
 
 app.post('/like', function (req, res) {
-  nolike(req.body.liked);
+  nolike(req.body.id);
   res.redirect('like');
 });
 
@@ -75,19 +75,12 @@ app.get('/like', async (req, res) => {
   try {
     const liked = await findAllPeopleLiked();
     const likedPeople = liked[0].id;
-    const allUsers = await findAllPeopleNotVisited();
-    const firstUser = allUsers[0];
-    const userID = allUsers[0].id;
     res.render('like', {
       style: 'like.css',
       liked,
       likedPeople,
-      allUsers,
-      userID,
-      firstUser,
     });
   } catch (e) {
-    console.log(e);
     res.redirect('/nobodyliked');
   }
 });
@@ -117,16 +110,16 @@ function updateData(id, liked) {
     .findOneAndUpdate({ id }, { $set: { liked, visited: true } })
     .lean()
     .then((data) => {
-      console.log(data);
+      // console.log(data);
     });
 }
 
-function nolike(liked) {
+function nolike(userID) {
   testingModel
-    .findOneAndUpdate({ $set: { liked: false } })
+    .findOneAndUpdate({ id: userID }, { $set: { liked: false } })
     .lean()
     .then((data) => {
-      console.log(data);
+      // console.log(data);
     });
 }
 

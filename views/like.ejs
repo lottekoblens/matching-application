@@ -13,7 +13,7 @@
                 <p><%= liked.age %>, <%= liked.residence %></p>
                 <p>Favorite product: <%= liked.product %></p>
             </div>
-            <%- include('./partials/dislike-form.ejs')%>
+            <%- include('./partials/dislike-form.ejs', { userID: liked.id})%>
         </li>
     <% }); %>
 </ul>
