@@ -2,7 +2,7 @@
 <%- include('partials/header.ejs'); %>
 
 <h3>These are the people you liked</h3>
-<!-- <p>If you don't like someone anymore, you can delete them.</p> -->
+<p>If you don't like someone anymore, you can delete them.</p>
 
 <ul>
     <% liked.forEach(function(liked) { %>
@@ -13,7 +13,7 @@
                 <p><%= liked.age %>, <%= liked.residence %></p>
                 <p>Favorite product: <%= liked.product %></p>
             </div>
-            <!-- <img id="img-delete" src="/static/images/delete.svg" alt=""> -->
+            <%- include('./partials/dislike-form.ejs')%>
         </li>
     <% }); %>
 </ul>

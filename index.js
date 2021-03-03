@@ -65,6 +65,11 @@ app.post('/', function (req, res) {
   res.redirect('/');
 });
 
+app.post('like', function (req, res) {
+  dislike(req.body.liked);
+  res.redirect('like');
+});
+
 // like page
 app.get('/like', async (req, res) => {
   try {
@@ -103,6 +108,15 @@ app.use(function (req, res, next) {
 function updateData(id, liked) {
   testingModel
     .findOneAndUpdate({ id }, { $set: { liked, visited: true } })
+    .lean()
+    .then((data) => {
+      console.log(data);
+    });
+}
+
+function dislike(liked) {
+  testingModel
+    .findOneAndUpdate({ $set: { liked: false } })
     .lean()
     .then((data) => {
       console.log(data);
