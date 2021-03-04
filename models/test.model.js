@@ -40,3 +40,4 @@ const clusterSchema = new schema({
 });
 
 module.exports = mongoose.model('users', clusterSchema);
+// users stands for collection in database

@@ -26,26 +26,63 @@ app
   .use(bodyParser.json())
   .use(urlencodedParser)
   .set('view engine', 'ejs')
-  .set('views', path.join(__dirname, '/views'));
+  .set('views', path.join(__dirname, '/views'))
+  .get('/', async (req, res) => {
+    try {
+      const allUsers = await findAllPeopleNotVisited();
+      const firstUser = allUsers[0];
+      const userID = allUsers[0].id;
 
-// routing
-// home page
-app.get('/', async (req, res) => {
-  try {
-    const allUsers = await findAllPeopleNotVisited();
-    const firstUser = allUsers[0];
-    const userID = allUsers[0].id;
-
-    res.render('home', {
-      style: 'home.css',
-      firstUser,
-      userID,
+      res.render('home', {
+        style: 'home.css',
+        firstUser,
+        userID,
+      });
+    } catch (e) {
+      console.log(e);
+      res.redirect('/nomorepeople');
+    }
+  })
+  .get('/like', async (req, res) => {
+    try {
+      const liked = await findAllPeopleLiked();
+      const likedPeople = liked[0].id;
+      res.render('like', {
+        style: 'like.css',
+        liked,
+        likedPeople,
+      });
+    } catch (e) {
+      res.redirect('/nobodyliked');
+    }
+  })
+  // nobody is liked page
+  .get('/nobodyliked', async (req, res) => {
+    res.render('nobodyliked', {
+      style: 'like.css',
     });
-  } catch (e) {
-    console.log(e);
-    res.redirect('/nomorepeople');
-  }
-});
+  })
+  // no more people to display
+  .get('/nomorepeople', async (req, res) => {
+    res.render('nomorepeople', {
+      style: 'home.css',
+    });
+  })
+  // post request when liked or disliked
+  .post('/', (req, res) => {
+    updateData(req.body.id, req.body.liked);
+    res.redirect('/');
+  })
+  // post request when profile is deleted from liked list
+  .post('/like', (req, res) => {
+    unlike(req.body.id);
+    res.redirect('like');
+  })
+  // error when page is not found
+  .use((req, res, next) => {
+    res.status(404).send("Sorry can't find that!");
+  });
+
 // sources images:
 // https://www.cosmopolitan.com/nl/lifestyle/a21188626/de-lekkerste-dingen-bij-de-mcdonalds/
 // https://www.stuff.co.nz/life-style/food-wine/food-news/114766115/nutritionists-concerned-about-mcdonalds-free-cheeseburger-offer
@@ -59,85 +96,36 @@ app.get('/', async (req, res) => {
 // https://www.youtube.com/watch?app=desktop&v=xD8T7SrhLjU
 // https://twitter.com/mcdonalds/status/923632426206851072
 
-// post request
-app.post('/', function (req, res) {
-  updateData(req.body.id, req.body.liked);
-  res.redirect('/');
-});
-
-app.post('/like', function (req, res) {
-  nolike(req.body.id);
-  res.redirect('like');
-});
-
-// like page
-app.get('/like', async (req, res) => {
-  try {
-    const liked = await findAllPeopleLiked();
-    const likedPeople = liked[0].id;
-    res.render('like', {
-      style: 'like.css',
-      liked,
-      likedPeople,
-    });
-  } catch (e) {
-    res.redirect('/nobodyliked');
-  }
-});
-
-// nobody is liked page
-app.get('/nobodyliked', async (req, res) => {
-  res.render('nobodyliked', {
-    style: 'like.css',
-  });
-});
-
-// no more people to display
-app.get('/nomorepeople', async (req, res) => {
-  res.render('nomorepeople', {
-    style: 'home.css',
-  });
-});
-
-// error message when page not found
-app.use(function (req, res, next) {
-  res.status(404).send("Sorry can't find that!");
-});
-
 // id is found and updated and liked and visited will be set to true
 function updateData(id, liked) {
   testingModel
     .findOneAndUpdate({ id }, { $set: { liked, visited: true } })
     .lean()
+    // lean zorgt dat querie sneller wordt uitgevoerd (is not necesarry)
     .then((data) => {
-      // console.log(data);
-    });
+      console.log(data);
+    }); // then stands for: when data is found, you gotta do this
 }
 
-function nolike(userID) {
+// profile from liked page will be deleted from list
+function unlike(userID) {
   testingModel
     .findOneAndUpdate({ id: userID }, { $set: { liked: false } })
     .lean()
     .then((data) => {
-      // console.log(data);
+      console.log(data);
     });
 }
 
 // people of which visited is false will be found
 async function findAllPeopleNotVisited() {
-  const data = await testingModel
-    .find({ visited: false })
-    .lean()
-    .then((data) => data);
+  const data = await testingModel.find({ visited: false }).lean();
   return data;
 }
 
 // people of which liked is true will be found
 async function findAllPeopleLiked() {
-  const data = await testingModel
-    .find({ liked: true })
-    .lean()
-    .then((data) => data);
+  const data = await testingModel.find({ liked: true }).lean();
   return data;
 }
 
