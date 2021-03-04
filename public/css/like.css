@@ -68,10 +68,14 @@ ul li img {
 }
 
 #img-delete {
+    background-size: cover;
+    background-image: url('/static/images/delete.svg');
+    border: none;
+    background-color: transparent;
     position: absolute;
-    right: 0.2em;
+    right: 0.5em;
     width: 2em;
-    height: 2em;
+    height: 3.5em;
     margin: 0.5em 0 0 0;
     padding: 0;
 }
