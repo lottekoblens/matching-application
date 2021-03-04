@@ -1,3 +1,5 @@
-if ($where('div#status').text() != '') {
-  alert($('div#status').text());
-}
+// const button = document.getElementById('button1');
+// button.addEventListener('submit', clickedLike);
+
+// function clickedLike() {
+// }
