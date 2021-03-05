@@ -1,10 +1,10 @@
-const button = document.getElementById('button1');
-button.addEventListener('submit', clickedLike);
+const kkfkfkgj = document.getElementById('like');
+kkfkfkgj.addEventListener('submit', clickedLike);
 const popup = document.getElementById('LikedPopup');
 
 function clickedLike() {
-  window.setTimeout(hidePopup(), 2000);
   popup.classList.add('show');
+  window.setTimeout(hidePopup, 2000);
 }
 
 function hidePopup() {

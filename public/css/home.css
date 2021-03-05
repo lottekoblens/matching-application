@@ -129,7 +129,7 @@ a#liked {
     z-index: 1;
   }
 
-  .popuptext .show {
+  .show {
     visibility: visible;
     width: 8.5em;
     background-color: #555;
