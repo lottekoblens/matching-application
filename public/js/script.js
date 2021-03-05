@@ -1,12 +1,14 @@
-const kkfkfkgj = document.getElementById('like');
-kkfkfkgj.addEventListener('submit', clickedLike);
-const popup = document.getElementById('LikedPopup');
+testFormSubmit();
+
+function testFormSubmit() {
+  document.getElementById('like').addEventListener('submit', clickedLike);
+}
 
 function clickedLike() {
-  popup.classList.add('show');
-  window.setTimeout(hidePopup, 2000);
+  document.getElementById('LikedPopup').classList.add('show');
+  window.setTimeout(hidePopup, 8000);
 }
 
 function hidePopup() {
-  popup.classList.remove('show');
+  document.getElementById('LikedPopup').classList.remove('show');
 }
