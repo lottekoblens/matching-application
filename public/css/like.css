@@ -83,6 +83,7 @@ ul li img {
     height: 3.5em;
     margin: 0.5em 0 0 0;
     padding: 0;
+    text-indent: -999em;
 }
 
 #delete:focus, #delete:active {

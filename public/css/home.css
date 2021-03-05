@@ -71,6 +71,7 @@ h3.nomore {
     height: 9.5em;
     border: none;
     background-color: transparent;
+    text-indent: -999em;
 }
 
 #button1 {

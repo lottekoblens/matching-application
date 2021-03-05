@@ -15,9 +15,9 @@ require('dotenv').config();
 // database connection
 const dbUrl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}`;
 mongoose.connect(dbUrl, {
-  useUnifiedTopology: true, // need to use it, otherwise it won't work
-  useNewUrlParser: true, // need to use it, otherwise it won't work
-  useFindAndModify: false, // need to use it, otherwise it won't work
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useFindAndModify: false,
 });
 
 // express
