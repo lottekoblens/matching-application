@@ -1,11 +1,11 @@
 <form id="dislike" method="POST" action="/">
     <input name="liked" type="hidden" value="false">
     <input name="id" type="hidden" value="<%= userID %>">
-    <button id="button1" type="submit">Like</button>
+    <button id="like-button" type="submit">Like</button>
   </form>
   <form id="like" method="POST" action= "/">
     <input name="liked" type="hidden" value="true">
     <input name="id" type="hidden" value="<%= userID %>">
-    <button id="button2" type="submit">Dislike</button>
+    <button id="dislike-button" type="submit">Dislike</button>
   </form>
   <script src="../static/js/script.js"></script>

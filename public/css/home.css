@@ -13,7 +13,7 @@ a:active, a:focus {
     border: solid 0.2em black;
 }
 
-#link {
+a#link {
     text-align: center;
 }
 
@@ -33,7 +33,7 @@ header h2 {
     color: #ffd700;
 }
 
-.hartje {
+img.hartje {
     width: 3em;
     height: 3em;
     margin: 1em;
@@ -52,20 +52,20 @@ h3.nomore {
     font-size: 1.4em;
 }
 
-.girl {
+img.profilepicture {
     width: 90%;
     height: 55vh;
     margin: 1em;
     border-radius: 10%;
 }
 
-.formulier {
+div.formulier {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-#button1, #button2 {
+button#like-button, button#dislike-button {
     background-size: cover;
     width: 8em;
     height: 9.5em;
@@ -74,17 +74,17 @@ h3.nomore {
     text-indent: -999em;
 }
 
-#button1 {
+button#like-button {
     background-image: url('/static/images/dislike-button.svg');
     margin: 2.5em 4.5em 0 0;
 }
 
-#button2 {
+button#dislike-button {
     background-image: url('/static/images/like-button.svg');
     margin: 2.5em 0 0 0;
 }
 
-#button1:active, #button2:active, #button1:focus, #button2:focus {
+button#like-button:active, button#dislike-button:active, button#like-button:focus, button#dislike-button:focus {
     outline: black;
     border: solid 0.2em black;
 }
@@ -93,16 +93,12 @@ p {
     text-align: center;
 }
 
-.info {
+p.info {
     margin: 0;
     text-align: center;
 }
 
-.invisible {
-    display: none;
-}
-
-.sad {
+img.sad {
     margin: 4em 2em 2em 2em;
 }
 
@@ -118,27 +114,20 @@ a#liked {
     color: white;
 }
 
-.popuptext {
+div.popuptext {
     visibility: hidden;
-    width: 10em;
-    font-size: 2em;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 0.5em 0;
     position: absolute;
-    z-index: 1;
   }
 
-  .show {
+div.show {
     visibility: visible;
     width: 8.5em;
     background-color: #555;
+    font-size: 2em;
     color: #fff;
     text-align: center;
-    border-radius: 6px;
+    border-radius: 0.375em;
     padding: 0.5em 0;
     position: absolute;
     z-index: 1;
-  }
+}
