@@ -4,7 +4,7 @@ const app = express();
 const port = 3000;
 const path = require('path');
 const bodyParser = require('body-parser');
-const slug = require('slug');
+// const slug = require('slug');
 const ejs = require('ejs');
 
 const urlencodedParser = bodyParser.urlencoded({ extended: true });
@@ -34,14 +34,13 @@ app
       const allUsers = await findAllPeopleNotVisited();
       const firstUser = allUsers[0];
       const userID = allUsers[0].id;
-
       res.render('home', {
         style: 'home.css',
         firstUser,
         userID,
       });
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
       res.redirect('/nomorepeople');
     }
     // sources for try catch method: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch, https://www.w3schools.com/js/js_errors.asp, https://javascript.info/try-catch
@@ -49,12 +48,15 @@ app
   .get('/like', async (req, res) => {
     try {
       const likedPeople = await findAllPeopleLiked();
+      if (likedPeople.length === 0) {
+        throw new Error('Required');
+      }
       res.render('like', {
         style: 'like.css',
         likedPeople,
       });
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
       res.redirect('/nobodyliked');
     }
   })
@@ -130,6 +132,7 @@ async function findAllPeopleNotVisited() {
 // people of which liked is true will be found
 async function findAllPeopleLiked() {
   const data = await testingModel.find({ liked: true }).lean();
+  // console.log(data);
   return data;
 }
 
