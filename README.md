@@ -37,6 +37,9 @@ I designed the application for the Iphone X, it's not responsive.
 1. Start the server with `npm start`
 1. Go to localhost:3000 in your browser to use the app
 
+## Live version with Digital Ocean
+https://matching-application-lk46y.ondigitalocean.app/
+
 ## License
 [MIT][license]
 
