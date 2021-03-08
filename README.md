@@ -17,6 +17,15 @@ I designed the application for the Iphone X, it's not responsive.
 1. Set up your database with MongoDb and add these profiles
 
 ![Profile one](public/images/profile1.png)
+![Profile two](public/images/profile2.png)
+![Profile three](public/images/profile3.png)
+![Profile four](public/images/profile4.png)
+![Profile five](public/images/profile5.png)
+![Profile six](public/images/profile6.png)
+![Profile seven](public/images/profile7.png)
+![Profile eight](public/images/profile8.png)
+![Profile nine](public/images/profile9.png)
+![Profile ten](public/images/profile10.png)
 
 ## Usage
 1. Navigate to the projects folder root
