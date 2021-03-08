@@ -14,6 +14,9 @@ I designed the application for the Iphone X, it's not responsive.
    
     ``` git clone https://github.com/lottekoblens/matching-application.git ```
 1. run `npm install`
+1. Set up your database with MongoDb and add these profiles
+
+![Profile one](public/images/profile1.png)
 
 ## Usage
 1. Navigate to the projects folder root
