@@ -54,6 +54,7 @@ h3.nomore {
 
 img.profilepicture {
     width: 90%;
+    max-width: 21.25em;
     height: 55vh;
     margin: 1em;
     border-radius: 10%;
