@@ -13,6 +13,7 @@ I designed the application for the Iphone X, it's not responsive.
 1. Clone this repository 
    
     ``` git clone https://github.com/lottekoblens/matching-application.git ```
+1. Navigate to the folders root
 1. run `npm install`
 1. Set up your database with MongoDb and add these profiles
 
@@ -27,8 +28,12 @@ I designed the application for the Iphone X, it's not responsive.
 ![Profile nine](public/images/profile9.png)
 ![Profile ten](public/images/profile10.png)
 
+5. Setup environment variables
+   - DB_HOST = Host string that you use for your MongoDB
+   - DB_USER = Username that you use for your MongoDB
+   - DB_PASS = Password that you use for your MongoDB
+
 ## Usage
-1. Navigate to the projects folder root
 1. Start the server with `npm start`
 1. Go to localhost:3000 in your browser to use the app
 
