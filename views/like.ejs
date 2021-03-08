@@ -5,15 +5,15 @@
 <p>If you don't like someone anymore, you can delete them.</p>
 
 <ul>
-    <% liked.forEach(function(liked) { %>
+    <% likedPeople.forEach(function(likedPeople) { %>
         <li>
-            <img src="<%= liked.img %>">
+            <img src="<%= likedPeople.img %>">
             <div>
-                <h4><%= liked.name %></h4>
-                <p><%= liked.age %>, <%= liked.residence %></p>
-                <p>Favorite product: <%= liked.product %></p>
+                <h4><%= likedPeople.name %></h4>
+                <p><%= likedPeople.age %>, <%= likedPeople.residence %></p>
+                <p>Favorite product: <%= likedPeople.product %></p>
             </div>
-            <%- include('./partials/dislike-form.ejs', { userID: liked.id})%>
+            <%- include('./partials/dislike-form.ejs', { userID: likedPeople.id})%>
         </li>
     <% }); %>
 </ul>

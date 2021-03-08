@@ -20,7 +20,7 @@ mongoose.connect(dbUrl, {
   useNewUrlParser: true,
   useFindAndModify: false,
 });
-// Source connecting with mongoose: https://mongoosejs.com/docs/guide.html
+// source connecting with mongoose: https://mongoosejs.com/docs/guide.html
 
 // express
 app
@@ -48,14 +48,13 @@ app
   })
   .get('/like', async (req, res) => {
     try {
-      const liked = await findAllPeopleLiked();
-      const likedPeople = liked[0].id;
+      const likedPeople = await findAllPeopleLiked();
       res.render('like', {
         style: 'like.css',
-        liked,
         likedPeople,
       });
     } catch (e) {
+      console.log(e);
       res.redirect('/nobodyliked');
     }
   })
@@ -73,7 +72,7 @@ app
   })
   // post request when liked or disliked
   .post('/', (req, res) => {
-    updateData(req.body.id, req.body.liked);
+    likedAndVisitedToTrue(req.body.id, req.body.liked);
     res.redirect('/');
   })
   // post request when profile is deleted from liked list
@@ -99,8 +98,8 @@ app
 // https://www.youtube.com/watch?app=desktop&v=xD8T7SrhLjU
 // https://twitter.com/mcdonalds/status/923632426206851072
 
-// id is found and updated and liked and visited will be set to true
-function updateData(id, liked) {
+// id is found and liked and visited will be set to true
+function likedAndVisitedToTrue(id, liked) {
   testingModel
     .findOneAndUpdate({ id }, { $set: { liked, visited: true } })
     // source findOneAndUpdate: https://mongoosejs.com/docs/tutorials/findoneandupdate.html
